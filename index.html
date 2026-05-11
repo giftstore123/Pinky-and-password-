@@ -3,249 +3,959 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>هدية لبيست فريند</title>
+    <title>💝 هدية لأغلى شخص 💝</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --pink-light: #ffe4e1;
-            --pink-main: #ffb6c1;
-            --pink-dark: #ff69b4;
+            --p0: #fff0f5;
+            --p1: #ffd6e7;
+            --p2: #ffb3d1;
+            --p3: #ff85b3;
+            --p4: #ff4d94;
+            --p5: #e0006e;
             --white: #ffffff;
+            --soft: #fff5f8;
         }
 
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--pink-light);
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #ffe4f0 0%, #ffd1e8 40%, #ffc2df 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ===== خلفية مع نقاط كيوت ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(circle, #ffb3d188 1px, transparent 1px),
+                radial-gradient(circle, #ff85b355 1px, transparent 1px);
+            background-size: 30px 30px, 15px 15px;
+            background-position: 0 0, 15px 15px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ===== شخابيط الخلفية ===== */
+        .doodles-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
             overflow: hidden;
         }
+        .doodle {
+            position: absolute;
+            opacity: 0.18;
+            animation: doodlefloat 6s ease-in-out infinite;
+            font-size: 2rem;
+            color: var(--p4);
+        }
+        @keyframes doodlefloat {
+            0%,100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-12px) rotate(5deg); }
+        }
 
-        /* صفحة القفل */
+        /* ===== صفحة القفل ===== */
         #login-page {
-            text-align: center;
+            position: relative;
             z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+            padding: 20px;
+            width: 100%;
+            max-width: 420px;
         }
 
-        .title-text {
-            color: var(--pink-dark);
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 2px white;
+        .lock-card {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(16px);
+            border-radius: 36px;
+            padding: 30px 28px 24px;
+            box-shadow:
+                0 8px 32px rgba(255,77,148,0.18),
+                0 2px 8px rgba(255,77,148,0.10),
+                inset 0 0 0 2px rgba(255,179,209,0.6);
+            width: 100%;
+            text-align: center;
+            position: relative;
         }
 
+        .bow-top {
+            position: absolute;
+            top: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.6rem;
+            filter: drop-shadow(0 2px 6px rgba(255,77,148,0.4));
+            animation: bowbounce 2s ease-in-out infinite;
+        }
+        @keyframes bowbounce {
+            0%,100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.1) rotate(-5deg); }
+        }
+
+        .lock-title {
+            color: var(--p5);
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-top: 18px;
+            margin-bottom: 4px;
+            text-shadow: 0 1px 6px rgba(255,77,148,0.2);
+            line-height: 1.6;
+        }
+        .lock-subtitle {
+            color: var(--p3);
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+        }
+
+        /* شاشة التاريخ */
+        .date-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.85);
+            border: 2.5px solid var(--p2);
+            border-radius: 18px;
+            padding: 10px 14px;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 12px rgba(255,133,179,0.1);
+        }
+        .date-segment {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+        .date-label {
+            font-size: 0.6rem;
+            color: var(--p3);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .date-value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--p4);
+            min-width: 44px;
+            text-align: center;
+            background: var(--p1);
+            border-radius: 10px;
+            padding: 4px 8px;
+            letter-spacing: 3px;
+            border: 2px solid var(--p2);
+            transition: all 0.2s;
+        }
+        .date-value.active {
+            border-color: var(--p4);
+            background: #fff0f8;
+            box-shadow: 0 0 0 3px rgba(255,77,148,0.15);
+        }
+        .date-sep {
+            font-size: 1.4rem;
+            color: var(--p3);
+            font-weight: 800;
+            margin-top: 14px;
+        }
+
+        /* مراحل الإدخال */
+        .stage-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .stage-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--p2);
+            transition: all 0.3s;
+        }
+        .stage-dot.done { background: var(--p4); transform: scale(1.2); }
+        .stage-dot.active { background: var(--p3); transform: scale(1.4); box-shadow: 0 0 0 3px rgba(255,77,148,0.2); }
+
+        /* مفاتيح الأرقام */
         .keypad {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.5);
-            padding: 25px;
-            border-radius: 30px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            border: 2px solid white;
+            gap: 12px;
+            padding: 18px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 28px;
+            box-shadow:
+                0 4px 20px rgba(255,77,148,0.1),
+                inset 0 0 0 2px rgba(255,179,209,0.4);
         }
 
         .key {
-            width: 60px;
-            height: 60px;
+            width: 68px;
+            height: 68px;
             border-radius: 50%;
             border: none;
-            background: var(--pink-main);
+            background: linear-gradient(145deg, #ffcfe4, #ffaace);
             color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
+            font-size: 1.4rem;
+            font-weight: 800;
             cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 4px 0 var(--pink-dark);
-        }
-
-        .key:active {
-            transform: translateY(4px);
-            box-shadow: none;
-        }
-
-        #pass-display {
-            width: 100%;
-            height: 40px;
-            background: white;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            border: 2px solid var(--pink-main);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            letter-spacing: 5px;
-            color: var(--pink-dark);
-        }
-
-        /* الصفحة الثانية */
-        #main-content {
-            display: none; /* مخفية في البداية */
-            width: 90%;
-            max-width: 500px;
-            background: white;
-            border-radius: 40px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.2);
-            border: 5px solid var(--pink-main);
+            transition: all 0.15s;
+            box-shadow:
+                0 5px 0 #e8639a,
+                0 6px 12px rgba(255,77,148,0.25);
+            font-family: 'Tajawal', sans-serif;
             position: relative;
-            animation: fadeIn 1s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .video-container {
-            width: 100%;
-            border-radius: 20px;
             overflow: hidden;
-            margin-bottom: 20px;
-            border: 3px solid var(--pink-light);
+        }
+        .key::after {
+            content: '';
+            position: absolute;
+            top: 6px; left: 12px;
+            width: 40%; height: 25%;
+            background: rgba(255,255,255,0.35);
+            border-radius: 50%;
+        }
+        .key:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 0 #e8639a, 0 8px 16px rgba(255,77,148,0.3);
+        }
+        .key:active {
+            transform: translateY(5px);
+            box-shadow: 0 0 0 #e8639a;
         }
 
-        .buttons-side {
+        .key-clear {
+            background: linear-gradient(145deg, #e8e8e8, #d0d0d0);
+            box-shadow: 0 5px 0 #aaa, 0 6px 12px rgba(0,0,0,0.1);
+            color: #888;
+        }
+        .key-clear:hover { box-shadow: 0 7px 0 #aaa, 0 8px 16px rgba(0,0,0,0.15); }
+        .key-clear:active { box-shadow: 0 0 0 #aaa; }
+
+        .key-enter {
+            background: linear-gradient(145deg, #90ee90, #58c258);
+            box-shadow: 0 5px 0 #3a9a3a, 0 6px 12px rgba(0,100,0,0.2);
+            color: white;
+        }
+        .key-enter:hover { box-shadow: 0 7px 0 #3a9a3a, 0 8px 16px rgba(0,100,0,0.25); }
+        .key-enter:active { box-shadow: 0 0 0 #3a9a3a; }
+
+        .key-back {
+            background: linear-gradient(145deg, #ffcfe4, #ffaace);
+            box-shadow: 0 5px 0 #e8639a, 0 6px 12px rgba(255,77,148,0.25);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .stage-hint {
+            color: var(--p4);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-align: center;
+            min-height: 20px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+
+        /* رسالة خطأ */
+        .error-msg {
+            color: #ff4d4d;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            padding: 6px 12px;
+            border-radius: 10px;
+            background: rgba(255,77,77,0.08);
+        }
+        .error-msg.show { opacity: 1; }
+
+        /* ===== صفحة المحتوى ===== */
+        #main-content {
+            display: none;
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 440px;
+            padding: 16px;
+            animation: popIn 0.6s cubic-bezier(0.175,0.885,0.32,1.275) forwards;
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.7) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .main-card {
+            background: rgba(255,255,255,0.82);
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
+            padding: 24px 20px;
+            box-shadow:
+                0 12px 40px rgba(255,77,148,0.22),
+                inset 0 0 0 3px rgba(255,179,209,0.5);
+            text-align: center;
+            position: relative;
+        }
+
+        .main-title {
+            color: var(--p5);
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+            text-shadow: 0 1px 8px rgba(255,77,148,0.2);
+        }
+        .main-subtitle {
+            color: var(--p3);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+
+        /* مشغل الفيديو */
+        .video-wrapper {
+            width: 100%;
+            border-radius: 22px;
+            overflow: hidden;
+            border: 3px solid var(--p2);
+            margin-bottom: 18px;
+            box-shadow: 0 4px 20px rgba(255,77,148,0.15);
+            background: #ffe0ef;
+            position: relative;
+        }
+        .video-wrapper video {
+            width: 100%;
+            max-height: 240px;
+            display: block;
+            border-radius: 20px;
+        }
+        .video-placeholder {
+            padding: 32px;
+            color: var(--p3);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+        .video-placeholder .vid-icon { font-size: 3rem; display: block; margin-bottom: 8px; }
+
+        /* أزرار الأكشن */
+        .action-buttons {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 12px;
         }
 
         .action-btn {
-            background: var(--pink-main);
-            color: white;
             border: none;
-            padding: 12px;
-            border-radius: 15px;
+            padding: 14px 20px;
+            border-radius: 20px;
             cursor: pointer;
             font-size: 1rem;
-            transition: 0.3s;
+            font-weight: 800;
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
         }
-
-        .action-btn:hover {
-            background: var(--pink-dark);
-        }
-
-        /* الفراشات */
-        .butterfly {
+        .action-btn::before {
+            content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background: url('https://cdn-icons-png.flaticon.com/512/1045/1045511.png'); /* رابط أيقونة فراشة */
-            background-size: contain;
-            background-repeat: no-repeat;
-            pointer-events: none;
-            z-index: 100;
-            animation: fly 5s infinite linear;
+            top: 5px; left: 15px;
+            width: 35%; height: 35%;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+        }
+        .action-btn:hover { transform: translateY(-3px); }
+        .action-btn:active { transform: translateY(1px); }
+
+        .btn-love {
+            background: linear-gradient(135deg, #ff85b3, #ff4d94);
+            color: white;
+            box-shadow: 0 5px 0 #c9006b, 0 8px 20px rgba(255,77,148,0.3);
+        }
+        .btn-love:hover { box-shadow: 0 7px 0 #c9006b, 0 10px 24px rgba(255,77,148,0.35); }
+
+        .btn-memory {
+            background: linear-gradient(135deg, #ffb3d1, #ff85b3);
+            color: white;
+            box-shadow: 0 5px 0 #e0006e, 0 8px 20px rgba(255,133,179,0.3);
+        }
+        .btn-memory:hover { box-shadow: 0 7px 0 #e0006e, 0 10px 24px rgba(255,133,179,0.35); }
+
+        .btn-photo {
+            background: linear-gradient(135deg, #ffcfe4, #ffb3d1);
+            color: var(--p5);
+            box-shadow: 0 5px 0 #ff85b3, 0 8px 20px rgba(255,179,209,0.3);
+        }
+        .btn-photo:hover { box-shadow: 0 7px 0 #ff85b3, 0 10px 24px rgba(255,179,209,0.35); }
+
+        /* منطقة الصورة */
+        #photo-area {
+            margin-top: 14px;
+            display: none;
+            animation: popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+        }
+        #photo-area img {
+            width: 100%;
+            border-radius: 20px;
+            border: 3px solid var(--p2);
+            box-shadow: 0 4px 20px rgba(255,77,148,0.2);
+        }
+        .photo-placeholder {
+            background: linear-gradient(135deg, var(--p1), var(--p0));
+            border: 3px dashed var(--p2);
+            border-radius: 20px;
+            padding: 30px;
+            color: var(--p3);
+            font-size: 0.85rem;
+            line-height: 2;
         }
 
-        @keyframes fly {
-            0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
-            100% { transform: translate(100px, -100vh) rotate(360deg); opacity: 0; }
+        /* بوبأب الرسائل */
+        .popup-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(255,77,148,0.15);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeOverlay 0.3s ease;
+        }
+        @keyframes fadeOverlay { from{opacity:0} to{opacity:1} }
+
+        .popup-card {
+            background: white;
+            border-radius: 32px;
+            padding: 32px 28px;
+            max-width: 340px;
+            width: 100%;
+            text-align: center;
+            box-shadow:
+                0 20px 60px rgba(255,77,148,0.3),
+                inset 0 0 0 3px rgba(255,179,209,0.5);
+            animation: popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+            position: relative;
+        }
+        .popup-icon { font-size: 3.5rem; margin-bottom: 12px; display: block; animation: iconpop 0.5s 0.2s cubic-bezier(0.175,0.885,0.32,1.275) both; }
+        @keyframes iconpop { from{transform:scale(0)} to{transform:scale(1)} }
+        .popup-title { color: var(--p5); font-size: 1.2rem; font-weight: 800; margin-bottom: 12px; }
+        .popup-text { color: #666; font-size: 1rem; line-height: 1.9; font-weight: 500; }
+        .popup-close {
+            margin-top: 20px;
+            background: linear-gradient(135deg, #ff85b3, #ff4d94);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 16px;
+            font-size: 1rem;
+            font-weight: 800;
+            font-family: 'Tajawal', sans-serif;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #c9006b;
+            transition: all 0.15s;
+        }
+        .popup-close:active { transform: translateY(4px); box-shadow: none; }
+
+        /* ===== فراشات ===== */
+        .butterfly {
+            position: fixed;
+            pointer-events: none;
+            z-index: 500;
+            font-size: 1.8rem;
+            animation: butterflyFly linear forwards;
+            will-change: transform, opacity;
+        }
+        @keyframes butterflyFly {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(0.5) rotate(0deg);
+            }
+            20% {
+                opacity: 1;
+                transform: translate(var(--dx1), var(--dy1)) scale(1.2) rotate(var(--r1));
+            }
+            60% {
+                opacity: 0.8;
+                transform: translate(var(--dx2), var(--dy2)) scale(1) rotate(var(--r2));
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--dx3), var(--dy3)) scale(0.3) rotate(var(--r3));
+            }
+        }
+
+        /* نثار قلوب */
+        .confetti-piece {
+            position: fixed;
+            pointer-events: none;
+            z-index: 499;
+            font-size: 1.2rem;
+            animation: confettiFall linear forwards;
+        }
+        @keyframes confettiFall {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* ===== زينة البطاقة ===== */
+        .card-deco {
+            position: absolute;
+            pointer-events: none;
+            font-size: 1.4rem;
+            opacity: 0.35;
+        }
+        .card-deco-tl { top: 14px; right: 16px; transform: rotate(-20deg); }
+        .card-deco-tr { top: 14px; left: 16px; transform: rotate(20deg); }
+        .card-deco-bl { bottom: 14px; right: 16px; transform: rotate(15deg); }
+        .card-deco-br { bottom: 14px; left: 16px; transform: rotate(-15deg); }
+
+        /* ===== نمط سكرول ===== */
+        #main-content { max-height: 100vh; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--p2) transparent; }
+
+        /* ===== شريط تقدم الرمز ===== */
+        .progress-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .progress-dot {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: var(--p2);
+            border: 2px solid var(--p3);
+            transition: all 0.2s;
+        }
+        .progress-dot.filled {
+            background: var(--p4);
+            transform: scale(1.2);
+            border-color: var(--p5);
+            box-shadow: 0 0 8px rgba(255,77,148,0.4);
         }
     </style>
 </head>
 <body>
 
-    <audio id="bg-music" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-        </audio>
+<!-- شخابيط الخلفية -->
+<div class="doodles-bg">
+    <div class="doodle" style="top:5%;left:5%;animation-delay:0s;font-size:2.5rem">🌸</div>
+    <div class="doodle" style="top:15%;right:8%;animation-delay:1s;font-size:1.8rem">✨</div>
+    <div class="doodle" style="top:25%;left:3%;animation-delay:2s;font-size:2rem">💕</div>
+    <div class="doodle" style="top:40%;right:4%;animation-delay:0.5s;font-size:2rem">🎀</div>
+    <div class="doodle" style="top:55%;left:6%;animation-delay:1.5s;font-size:1.5rem">⭐</div>
+    <div class="doodle" style="top:70%;right:5%;animation-delay:2.5s;font-size:2.2rem">🌸</div>
+    <div class="doodle" style="top:80%;left:4%;animation-delay:0.8s;font-size:1.6rem">💗</div>
+    <div class="doodle" style="top:88%;right:7%;animation-delay:3s;font-size:1.8rem">✨</div>
+    <div class="doodle" style="top:8%;left:45%;animation-delay:1.2s;font-size:1.4rem">🍓</div>
+    <div class="doodle" style="top:92%;left:40%;animation-delay:0.3s;font-size:1.6rem">🌷</div>
+    <!-- شخابيط SVG -->
+    <svg style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.08" viewBox="0 0 400 800" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20,60 Q60,20 100,60 Q140,100 180,60" stroke="#ff4d94" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M300,100 Q340,60 380,100 Q340,140 300,100Z" stroke="#ff4d94" stroke-width="2" fill="none"/>
+        <circle cx="50" cy="200" r="15" stroke="#ff85b3" stroke-width="2" fill="none"/>
+        <path d="M340,300 L360,280 L380,300 L360,320Z" stroke="#ffb3d1" stroke-width="2" fill="none"/>
+        <path d="M10,400 Q50,360 90,400 Q50,440 10,400Z" stroke="#ff4d94" stroke-width="2" fill="none"/>
+        <path d="M200,500 Q240,460 280,500 L240,540Z" stroke="#ff85b3" stroke-width="2" fill="none"/>
+        <circle cx="350" cy="550" r="20" stroke="#ffb3d1" stroke-width="2" fill="none"/>
+        <path d="M20,650 Q60,620 100,650" stroke="#ff4d94" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M50,700 L80,680 L110,700 L80,720Z" stroke="#ff85b3" stroke-width="2" fill="none"/>
+    </svg>
+</div>
 
-    <div id="login-page">
-        <h2 class="title-text">اكتبي تاريخ تعارفناا حتى تنفتح الهديةةة</h2>
-        <div id="pass-display">****</div>
-        <div class="keypad">
-            <button class="key" onclick="press(1)">1</button>
-            <button class="key" onclick="press(2)">2</button>
-            <button class="key" onclick="press(3)">3</button>
-            <button class="key" onclick="press(4)">4</button>
-            <button class="key" onclick="press(5)">5</button>
-            <button class="key" onclick="press(6)">6</button>
-            <button class="key" onclick="press(7)">7</button>
-            <button class="key" onclick="press(8)">8</button>
-            <button class="key" onclick="press(9)">9</button>
-            <button class="key" onclick="clearPass()" style="background: #ccc; box-shadow: 0 4px 0 #999;">C</button>
-            <button class="key" onclick="press(0)">0</button>
-            <button class="key" onclick="checkPass()" style="background: #4caf50; box-shadow: 0 4px 0 #388e3c;">✓</button>
+<!-- موسيقى الخلفية -->
+<audio id="bg-music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ===== صفحة القفل ===== -->
+<div id="login-page">
+
+    <div class="lock-card">
+        <div class="bow-top">🎀</div>
+        <div class="card-deco card-deco-tl">🌸</div>
+        <div class="card-deco card-deco-tr">💕</div>
+        <div class="card-deco card-deco-bl">⭐</div>
+        <div class="card-deco card-deco-br">✨</div>
+
+        <h2 class="lock-title">اكتبي تاريخ تعارفنا 🌸<br>حتى تنفتح الهديةةة 💝</h2>
+        <p class="lock-subtitle" id="stage-hint">ابدأي بإدخال اليوم ✨</p>
+
+        <!-- عرض التاريخ -->
+        <div class="date-display">
+            <div class="date-segment">
+                <span class="date-label">اليوم</span>
+                <div class="date-value active" id="disp-day">--</div>
+            </div>
+            <span class="date-sep">/</span>
+            <div class="date-segment">
+                <span class="date-label">الشهر</span>
+                <div class="date-value" id="disp-month">--</div>
+            </div>
+            <span class="date-sep">/</span>
+            <div class="date-segment">
+                <span class="date-label">السنة</span>
+                <div class="date-value" id="disp-year">----</div>
+            </div>
         </div>
+
+        <!-- نقاط التقدم -->
+        <div class="progress-dots" id="progress-dots"></div>
+
+        <div class="error-msg" id="error-msg">الرمز خطأ! حاولي مرة ثانية يا حلوة 💗</div>
     </div>
 
-    <div id="main-content">
-        <h2 style="color: var(--pink-dark);">كل عام وإنتِ بخير! ✨</h2>
-        
-        <div class="video-container">
-            <iframe width="100%" height="250" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <!-- لوحة المفاتيح -->
+    <div class="keypad">
+        <button class="key" onclick="press(1)">1</button>
+        <button class="key" onclick="press(2)">2</button>
+        <button class="key" onclick="press(3)">3</button>
+        <button class="key" onclick="press(4)">4</button>
+        <button class="key" onclick="press(5)">5</button>
+        <button class="key" onclick="press(6)">6</button>
+        <button class="key" onclick="press(7)">7</button>
+        <button class="key" onclick="press(8)">8</button>
+        <button class="key" onclick="press(9)">9</button>
+        <button class="key key-back" onclick="backspace()">⌫</button>
+        <button class="key" onclick="press(0)">0</button>
+        <button class="key key-enter" onclick="nextStage()">✓</button>
+    </div>
+</div>
+
+<!-- ===== صفحة المحتوى الرئيسية ===== -->
+<div id="main-content">
+    <div class="main-card">
+        <div class="card-deco card-deco-tl">🌸</div>
+        <div class="card-deco card-deco-tr">🎀</div>
+        <div class="card-deco card-deco-bl">💕</div>
+        <div class="card-deco card-deco-br">⭐</div>
+
+        <h2 class="main-title">كل عام وأنتِ بخير! 🎉</h2>
+        <p class="main-subtitle">يا أغلى شخص في حياتي 💝</p>
+
+        <!-- مشغل الفيديو -->
+        <div class="video-wrapper">
+            <video id="main-video" controls playsinline>
+                <source src="video.mp4" type="video/mp4">
+            </video>
+            <div class="video-placeholder" id="video-fallback" style="display:none">
+                <span class="vid-icon">🎬</span>
+                ضعي ملف <strong>video.mp4</strong><br>
+                في نفس مجلد ملف الـ HTML
+            </div>
         </div>
 
-        <div class="buttons-side">
-            <button class="action-btn" onclick="alert('إنتِ أغلى شي بحياتي، الله يديمنا لبعض!')">رسالة الحب 💌</button>
-            <button class="action-btn" onclick="alert('تتذكرين أول يوم التقينا؟ كان أحلى يوم!')">ذكرتنا 📸</button>
-            <button class="action-btn" onclick="showSurprise()">اضغط هنا للصورة 🎁</button>
+        <!-- أزرار -->
+        <div class="action-buttons">
+            <button class="action-btn btn-love" onclick="showPopup('love')">
+                💌 رسالة الحب
+            </button>
+            <button class="action-btn btn-memory" onclick="showPopup('memory')">
+                📸 ذكرياتنا
+            </button>
+            <button class="action-btn btn-photo" onclick="togglePhoto()">
+                🎁 صورتنا الحلوة
+            </button>
         </div>
-        
-        <div id="photo-area" style="margin-top: 15px; display: none;">
-            <img src="https://via.placeholder.com/200" id="surprise-img" style="width: 100%; border-radius: 15px;">
+
+        <!-- منطقة الصورة -->
+        <div id="photo-area">
+            <img src="photo.jpg" id="surprise-img" alt="صورتنا"
+                 onerror="this.style.display='none';document.getElementById('photo-fallback').style.display='block'">
+            <div class="photo-placeholder" id="photo-fallback" style="display:none">
+                📷 ضعي ملف <strong>photo.jpg</strong><br>
+                في نفس مجلد ملف الـ HTML
+            </div>
         </div>
     </div>
+</div>
 
-    <script>
-        // --- تعديل كلمة السر من هنا ---
-        const correctPassword = "2024"; // غير هذا الرقم للتاريخ اللي تريده
-        
-        let input = "";
+<!-- بوبأب الرسائل -->
+<div class="popup-overlay" id="popup-overlay" style="display:none" onclick="closePopup(event)">
+    <div class="popup-card">
+        <span class="popup-icon" id="popup-icon">💌</span>
+        <div class="popup-title" id="popup-title"></div>
+        <div class="popup-text" id="popup-text"></div>
+        <button class="popup-close" onclick="closePopupDirect()">أغلقي ×</button>
+    </div>
+</div>
 
-        function press(num) {
-            if (input.length < 4) {
-                input += num;
-                document.getElementById('pass-display').innerText = "*".repeat(input.length);
-            }
-        }
+<script>
+    // ============================================================
+    //  ⚙️ الإعدادات — غيّري الأرقام هنا فقط
+    // ============================================================
+    const CORRECT_DAY   = "01";   // اليوم   (رقمان)
+    const CORRECT_MONTH = "01";   // الشهر   (رقمان)
+    const CORRECT_YEAR  = "2024"; // السنة   (أربعة أرقام)
 
-        function clearPass() {
-            input = "";
-            document.getElementById('pass-display').innerText = "****";
-        }
+    const LOVE_MESSAGE  = "إنتِ أغلى شي بحياتي وأحب وجودك بجنبي كل يوم، الله يديمنا لبعض ويزيدنا حب 💕";
+    const MEMORY_TEXT   = "تتذكرين أول يوم التقينا؟ كان أحلى يوم بحياتي، وكل يوم معاكِ بيكون أحلى من اللي قبله 🌸";
+    // ============================================================
 
-        function checkPass() {
-            if (input === correctPassword) {
-                // إخفاء صفحة الدخول وإظهار المحتوى
-                document.getElementById('login-page').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-                
-                // تشغيل الموسيقى
-                document.getElementById('bg-music').play();
-                
-                // بدء تأثير الفراشات
-                startButterflies();
+    // منطق الإدخال
+    const stages = [
+        { id: 'disp-day',   max: 2, label: 'ابدأي بإدخال اليوم ✨' },
+        { id: 'disp-month', max: 2, label: 'الآن أدخلي الشهر 🌸' },
+        { id: 'disp-year',  max: 4, label: 'وأخيراً السنة 💕' },
+    ];
+    let currentStage = 0;
+    let inputs = ['', '', ''];
+
+    // نقاط التقدم
+    const dotsContainer = document.getElementById('progress-dots');
+    function buildDots() {
+        dotsContainer.innerHTML = '';
+        stages.forEach((_, i) => {
+            const el = document.createElement('div');
+            el.className = 'progress-dot' + (i < currentStage ? ' filled' : (i === currentStage ? ' filled' : ''));
+            if (i <= currentStage) el.classList.add('filled');
+            dotsContainer.appendChild(el);
+        });
+    }
+    buildDots();
+
+    function updateDisplay() {
+        const dayEl   = document.getElementById('disp-day');
+        const monthEl = document.getElementById('disp-month');
+        const yearEl  = document.getElementById('disp-year');
+
+        const displays = [dayEl, monthEl, yearEl];
+        const maxChars = [2, 2, 4];
+        const placeholders = ['--', '--', '----'];
+
+        displays.forEach((el, i) => {
+            const val = inputs[i];
+            const ph  = placeholders[i];
+            const max = maxChars[i];
+            if (val.length === 0) {
+                el.textContent = ph;
             } else {
-                alert("الرمز خطأ! حاولي مرة ثانية يا حلوة");
-                clearPass();
+                el.textContent = val.padEnd(max, '_');
+            }
+            el.classList.toggle('active', i === currentStage);
+        });
+
+        document.getElementById('stage-hint').textContent = stages[currentStage]?.label || '';
+    }
+
+    function press(num) {
+        if (currentStage >= stages.length) return;
+        const max = stages[currentStage].max;
+        if (inputs[currentStage].length < max) {
+            inputs[currentStage] += num;
+            updateDisplay();
+
+            // اضغط تلقائي إذا اكتمل الحقل
+            if (inputs[currentStage].length === max && currentStage < stages.length - 1) {
+                setTimeout(nextStage, 300);
             }
         }
+    }
 
-        function showSurprise() {
-            const area = document.getElementById('photo-area');
-            area.style.display = area.style.display === 'none' ? 'block' : 'none';
+    function backspace() {
+        if (inputs[currentStage].length > 0) {
+            inputs[currentStage] = inputs[currentStage].slice(0, -1);
+            updateDisplay();
+        } else if (currentStage > 0) {
+            currentStage--;
+            buildDots();
+            updateDisplay();
+        }
+    }
+
+    function nextStage() {
+        if (currentStage >= stages.length) return;
+        const val = inputs[currentStage];
+        const max = stages[currentStage].max;
+
+        if (val.length < max) {
+            showError('أكملي الإدخال أولاً 💕');
+            return;
         }
 
-        // كود الفراشات المتطايرة
-        function startButterflies() {
-            setInterval(() => {
-                const b = document.createElement('div');
-                b.className = 'butterfly';
-                b.style.left = Math.random() * 100 + "vw";
-                b.style.top = "100vh";
-                b.style.animationDuration = (Math.random() * 3 + 2) + "s";
-                document.body.appendChild(b);
-                setTimeout(() => b.remove(), 5000);
-            }, 500);
+        if (currentStage < stages.length - 1) {
+            currentStage++;
+            buildDots();
+            updateDisplay();
+        } else {
+            // تحقق من الرمز
+            checkPassword();
         }
-    </script>
+    }
+
+    function checkPassword() {
+        const day   = inputs[0];
+        const month = inputs[1];
+        const year  = inputs[2];
+
+        if (day === CORRECT_DAY && month === CORRECT_MONTH && year === CORRECT_YEAR) {
+            unlockPage();
+        } else {
+            showError('الرمز خطأ! حاولي مرة ثانية يا حلوة 💗');
+            setTimeout(() => {
+                inputs = ['', '', ''];
+                currentStage = 0;
+                buildDots();
+                updateDisplay();
+            }, 1200);
+        }
+    }
+
+    function showError(msg) {
+        const el = document.getElementById('error-msg');
+        el.textContent = msg;
+        el.classList.add('show');
+        setTimeout(() => el.classList.remove('show'), 2500);
+    }
+
+    // فتح الصفحة
+    function unlockPage() {
+        document.getElementById('login-page').style.opacity = '0';
+        document.getElementById('login-page').style.transform = 'scale(0.9)';
+        document.getElementById('login-page').style.transition = 'all 0.4s ease';
+
+        setTimeout(() => {
+            document.getElementById('login-page').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+
+            // موسيقى
+            document.getElementById('bg-music').play().catch(() => {});
+
+            // تفجير الفراشات
+            explodeButterflies();
+
+            // تحقق من الفيديو
+            const vid = document.getElementById('main-video');
+            vid.onerror = () => {
+                vid.parentElement.style.display = 'none';
+                document.getElementById('video-fallback').style.display = 'block';
+                document.getElementById('video-fallback').closest('.video-wrapper').style.display = 'block';
+            };
+            if (!vid.src || vid.error) {
+                vid.style.display = 'none';
+                document.getElementById('video-fallback').style.display = 'block';
+            }
+        }, 400);
+    }
+
+    // تفجير الفراشات 🦋
+    function explodeButterflies() {
+        const emojis = ['🦋', '🌸', '💕', '✨', '💗', '🌷', '⭐', '🎀', '💝', '🌺'];
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
+
+        for (let i = 0; i < 60; i++) {
+            setTimeout(() => {
+                const el = document.createElement('div');
+                el.className = 'butterfly';
+                el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+                const angle = Math.random() * Math.PI * 2;
+                const dist1 = 80 + Math.random() * 120;
+                const dist2 = 180 + Math.random() * 200;
+                const dist3 = 300 + Math.random() * 250;
+                const dur = 1.5 + Math.random() * 2;
+
+                const dx1 = Math.cos(angle) * dist1 + 'px';
+                const dy1 = Math.sin(angle) * dist1 + 'px';
+                const dx2 = Math.cos(angle + 0.3) * dist2 + 'px';
+                const dy2 = (Math.sin(angle + 0.3) * dist2 - 80) + 'px';
+                const dx3 = Math.cos(angle + 0.6) * dist3 + 'px';
+                const dy3 = (Math.sin(angle + 0.6) * dist3 - 200) + 'px';
+                const r1 = (Math.random() * 90 - 45) + 'deg';
+                const r2 = (Math.random() * 180 - 90) + 'deg';
+                const r3 = (Math.random() * 360 - 180) + 'deg';
+
+                el.style.cssText = `
+                    left: ${cx}px;
+                    top: ${cy}px;
+                    font-size: ${1 + Math.random() * 1.5}rem;
+                    animation-duration: ${dur}s;
+                    --dx1: ${dx1}; --dy1: ${dy1};
+                    --dx2: ${dx2}; --dy2: ${dy2};
+                    --dx3: ${dx3}; --dy3: ${dy3};
+                    --r1: ${r1}; --r2: ${r2}; --r3: ${r3};
+                `;
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), dur * 1000 + 200);
+            }, i * 60);
+        }
+
+        // نثار مستمر
+        startContinuousButterflies();
+    }
+
+    function startContinuousButterflies() {
+        const emojis = ['🦋', '🌸', '💕', '✨', '💗'];
+        let count = 0;
+        const interval = setInterval(() => {
+            const el = document.createElement('div');
+            el.className = 'confetti-piece';
+            el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.top = '-30px';
+            el.style.fontSize = (0.8 + Math.random() * 1) + 'rem';
+            const dur = 3 + Math.random() * 4;
+            el.style.animationDuration = dur + 's';
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), dur * 1000 + 200);
+
+            count++;
+            if (count > 80) clearInterval(interval);
+        }, 200);
+    }
+
+    // بوبأب الرسائل
+    const popups = {
+        love: {
+            icon: '💌',
+            title: 'رسالة الحب 💕',
+            text: LOVE_MESSAGE
+        },
+        memory: {
+            icon: '📸',
+            title: 'ذكرياتنا 🌸',
+            text: MEMORY_TEXT
+        }
+    };
+
+    function showPopup(type) {
+        const data = popups[type];
+        document.getElementById('popup-icon').textContent = data.icon;
+        document.getElementById('popup-title').textContent = data.title;
+        document.getElementById('popup-text').textContent = data.text;
+        document.getElementById('popup-overlay').style.display = 'flex';
+    }
+
+    function closePopup(e) {
+        if (e.target === document.getElementById('popup-overlay')) closePopupDirect();
+    }
+    function closePopupDirect() {
+        document.getElementById('popup-overlay').style.display = 'none';
+    }
+
+    // إظهار/إخفاء الصورة
+    let photoVisible = false;
+    function togglePhoto() {
+        photoVisible = !photoVisible;
+        document.getElementById('photo-area').style.display = photoVisible ? 'block' : 'none';
+    }
+
+    // تهيئة عرض التاريخ
+    updateDisplay();
+</script>
 </body>
 </html>
