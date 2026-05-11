@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💝 هدية لأغلى شخص 💝</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;700;800&family=Lemonada:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --p0: #fff0f5;
+            --p1: #ffd6e7;
+            --p2: #ffb3d1;
+            --p3: #ff85b3;
+            --p4: #ff4d94;
+            --p5: #d4006a;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Baloo Bhaijaan 2', 'Lemonada', sans-serif;
+            background: linear-gradient(135deg, #ffe4f0 0%, #ffd1e8 40%, #ffc2df 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(circle, #ffb3d188 1px, transparent 1px),
+                radial-gradient(circle, #ff85b355 1px, transparent 1px);
+            background-size: 28px 28px, 14px 14px;
+            background-position: 0 0, 14px 14px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* شخابيط الخلفية */
+        .doodles-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .doodle {
+            position: absolute;
+            opacity: 0.2;
+            animation: doodlefloat 6s ease-in-out infinite;
+            font-size: 2rem;
+        }
+        @keyframes doodlefloat {
+            0%,100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-14px) rotate(5deg); }
+        }
+
+        /* ===== صفحة القفل ===== */
+        #login-page {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .lock-card {
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(18px);
+            border-radius: 36px;
+            padding: 28px 24px 20px;
+            box-shadow:
+                0 8px 32px rgba(255,77,148,0.2),
+                inset 0 0 0 2.5px rgba(255,179,209,0.7);
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        /* ريبة أعلى */
+        .bow-top {
+            position: absolute;
+            top: -26px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            filter: drop-shadow(0 3px 8px rgba(255,77,148,0.5));
+            animation: bowbounce 2.2s ease-in-out infinite;
+        }
+        @keyframes bowbounce {
+            0%,100% { transform: translateX(-50%) scale(1) rotate(-4deg); }
+            50% { transform: translateX(-50%) scale(1.12) rotate(4deg); }
+        }
+
+        /* عنوان كيوت مزخرف */
+        .lock-title {
+            font-family: 'Lemonada', 'Baloo Bhaijaan 2', sans-serif;
+            color: var(--p4);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 20px;
+            margin-bottom: 6px;
+            line-height: 1.8;
+            text-shadow:
+                2px 2px 0px rgba(255,179,209,0.8),
+                0 0 20px rgba(255,77,148,0.15);
+            letter-spacing: 0.5px;
+        }
+        .lock-subtitle {
+            font-family: 'Lemonada', sans-serif;
+            color: var(--p3);
+            font-size: 0.82rem;
+            margin-bottom: 14px;
+            font-weight: 600;
+        }
+
+        /* عرض التاريخ */
+        .date-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.9);
+            border: 2.5px solid var(--p2);
+            border-radius: 20px;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 12px rgba(255,133,179,0.12);
+        }
+        .date-segment {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+        }
+        .date-label {
+            font-family: 'Lemonada', sans-serif;
+            font-size: 0.58rem;
+            color: var(--p3);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .date-value {
+            font-family: 'Baloo Bhaijaan 2', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--p4);
+            min-width: 46px;
+            text-align: center;
+            background: var(--p1);
+            border-radius: 12px;
+            padding: 4px 8px;
+            letter-spacing: 4px;
+            border: 2px solid var(--p2);
+            transition: all 0.25s;
+        }
+        .date-value.active {
+            border-color: var(--p4);
+            background: #fff0f8;
+            box-shadow: 0 0 0 4px rgba(255,77,148,0.15);
+            color: var(--p5);
+        }
+        .date-sep {
+            font-size: 1.4rem;
+            color: var(--p2);
+            font-weight: 800;
+            margin-top: 16px;
+        }
+
+        /* نقاط التقدم */
+        .progress-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 8px 0;
+        }
+        .progress-dot {
+            width: 11px; height: 11px;
+            border-radius: 50%;
+            background: var(--p1);
+            border: 2px solid var(--p2);
+            transition: all 0.25s;
+        }
+        .progress-dot.filled {
+            background: var(--p4);
+            border-color: var(--p5);
+            transform: scale(1.25);
+            box-shadow: 0 0 8px rgba(255,77,148,0.5);
+        }
+
+        .error-msg {
+            font-family: 'Lemonada', sans-serif;
+            color: #ff3366;
+            font-size: 0.82rem;
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 0.3s;
+            padding: 6px 14px;
+            border-radius: 12px;
+            background: rgba(255,51,102,0.07);
+            min-height: 28px;
+        }
+        .error-msg.show { opacity: 1; }
+
+        /* لوحة المفاتيح */
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 11px;
+            padding: 16px;
+            background: rgba(255,255,255,0.55);
+            border-radius: 30px;
+            box-shadow:
+                0 4px 20px rgba(255,77,148,0.12),
+                inset 0 0 0 2px rgba(255,179,209,0.45);
+        }
+
+        .key {
+            width: 66px;
+            height: 66px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(145deg, #ffd6e8, #ffaad0);
+            color: white;
+            font-family: 'Baloo Bhaijaan 2', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.15s;
+            box-shadow: 0 5px 0 #e05090, 0 7px 14px rgba(255,77,148,0.28);
+            position: relative;
+            overflow: hidden;
+        }
+        .key::after {
+            content: '';
+            position: absolute;
+            top: 7px; left: 12px;
+            width: 38%; height: 22%;
+            background: rgba(255,255,255,0.38);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .key:hover { transform: translateY(-2px); box-shadow: 0 7px 0 #e05090, 0 9px 18px rgba(255,77,148,0.32); }
+        .key:active { transform: translateY(5px); box-shadow: 0 0 0 #e05090; }
+
+        .key-back {
+            background: linear-gradient(145deg, #ffd6e8, #ffaad0);
+            box-shadow: 0 5px 0 #e05090, 0 7px 14px rgba(255,77,148,0.28);
+            font-size: 1.1rem;
+        }
+        .key-enter {
+            background: linear-gradient(145deg, #a8e6a8, #5cbf5c);
+            box-shadow: 0 5px 0 #3d9a3d, 0 7px 14px rgba(0,120,0,0.22);
+        }
+        .key-enter:hover { box-shadow: 0 7px 0 #3d9a3d; }
+        .key-enter:active { box-shadow: 0 0 0 #3d9a3d; }
+
+        /* ===== صفحة المحتوى ===== */
+        #main-content {
+            display: none;
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 450px;
+            padding: 14px;
+            max-height: 100vh;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--p2) transparent;
+            animation: popIn 0.65s cubic-bezier(0.175,0.885,0.32,1.275) forwards;
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.72) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .main-card {
+            background: rgba(255,255,255,0.82);
+            backdrop-filter: blur(22px);
+            border-radius: 42px;
+            padding: 24px 18px 28px;
+            box-shadow:
+                0 14px 44px rgba(255,77,148,0.24),
+                inset 0 0 0 3px rgba(255,179,209,0.55);
+            text-align: center;
+            position: relative;
+        }
+
+        .main-title {
+            font-family: 'Lemonada', 'Baloo Bhaijaan 2', sans-serif;
+            color: var(--p4);
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+            text-shadow:
+                2px 3px 0px rgba(255,179,209,0.9),
+                0 0 30px rgba(255,77,148,0.2);
+            letter-spacing: 0.5px;
+        }
+        .main-subtitle {
+            font-family: 'Lemonada', sans-serif;
+            color: var(--p3);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        /* ===== إطار الفيديو بزوايا هيلو كيتي ===== */
+        .video-outer {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 12px;
+        }
+
+        /* وجوه هيلو كيتي في الزوايا */
+        .hk-corner {
+            position: absolute;
+            width: 46px;
+            height: 46px;
+            z-index: 5;
+        }
+        .hk-corner.tl { top: 0; right: 0; }
+        .hk-corner.tr { top: 0; left: 0; transform: scaleX(-1); }
+        .hk-corner.bl { bottom: 0; right: 0; transform: scaleY(-1); }
+        .hk-corner.br { bottom: 0; left: 0; transform: scale(-1,-1); }
+
+        /* SVG هيلو كيتي */
+        .hk-face {
+            width: 46px;
+            height: 46px;
+        }
+
+        .video-frame {
+            width: 100%;
+            border-radius: 22px;
+            overflow: hidden;
+            border: 4px solid var(--p2);
+            box-shadow:
+                0 6px 28px rgba(255,77,148,0.22),
+                0 0 0 2px rgba(255,209,230,0.5);
+            background: #ffe0ef;
+            position: relative;
+        }
+
+        .video-frame video {
+            width: 100%;
+            max-height: 290px;
+            display: block;
+            object-fit: cover;
+        }
+
+        .video-placeholder {
+            padding: 36px 24px;
+            color: var(--p3);
+            font-family: 'Lemonada', sans-serif;
+            font-size: 0.88rem;
+            line-height: 2.2;
+        }
+        .video-placeholder .vid-icon { font-size: 3.2rem; display: block; margin-bottom: 8px; }
+
+        /* ===== أزرار هيلو كيتي ===== */
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+            margin-top: 4px;
+        }
+
+        .action-btn {
+            border: none;
+            padding: 0;
+            background: none;
+            cursor: pointer;
+            position: relative;
+            font-family: 'Lemonada', 'Baloo Bhaijaan 2', sans-serif;
+        }
+
+        .btn-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Lemonada', sans-serif;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.3px;
+        }
+        .btn-inner::before {
+            content: '';
+            position: absolute;
+            top: 5px; left: 18px;
+            width: 32%; height: 30%;
+            background: rgba(255,255,255,0.32);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .action-btn:hover .btn-inner { transform: translateY(-3px) scale(1.02); }
+        .action-btn:active .btn-inner { transform: translateY(2px) scale(0.98); }
+
+        .btn-love .btn-inner {
+            background: linear-gradient(135deg, #ff85b3, #ff4d94);
+            color: white;
+            box-shadow: 0 6px 0 #c9006b, 0 9px 22px rgba(255,77,148,0.32);
+        }
+        .btn-love:hover .btn-inner { box-shadow: 0 8px 0 #c9006b, 0 12px 28px rgba(255,77,148,0.38); }
+        .btn-love:active .btn-inner { box-shadow: 0 1px 0 #c9006b; }
+
+        .btn-memory .btn-inner {
+            background: linear-gradient(135deg, #ffb3d1, #ff7db5);
+            color: white;
+            box-shadow: 0 6px 0 #d4006a, 0 9px 22px rgba(255,125,181,0.32);
+        }
+        .btn-memory:hover .btn-inner { box-shadow: 0 8px 0 #d4006a, 0 12px 28px rgba(255,125,181,0.38); }
+        .btn-memory:active .btn-inner { box-shadow: 0 1px 0 #d4006a; }
+
+        .btn-photo .btn-inner {
+            background: linear-gradient(135deg, #ffd6e8, #ffaece);
+            color: var(--p5);
+            box-shadow: 0 6px 0 #e07aaa, 0 9px 22px rgba(255,174,206,0.32);
+        }
+        .btn-photo:hover .btn-inner { box-shadow: 0 8px 0 #e07aaa, 0 12px 28px rgba(255,174,206,0.38); }
+        .btn-photo:active .btn-inner { box-shadow: 0 1px 0 #e07aaa; }
+
+        /* وجه هيلو كيتي صغير جنب نص الزر */
+        .hk-mini {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+        }
+
+        /* منطقة الصورة */
+        #photo-area {
+            margin-top: 14px;
+            display: none;
+            animation: popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+        }
+        #photo-area img {
+            width: 100%;
+            border-radius: 22px;
+            border: 3px solid var(--p2);
+            box-shadow: 0 5px 22px rgba(255,77,148,0.22);
+        }
+        .photo-placeholder {
+            background: linear-gradient(135deg, var(--p1), var(--p0));
+            border: 3px dashed var(--p2);
+            border-radius: 22px;
+            padding: 28px;
+            color: var(--p3);
+            font-family: 'Lemonada', sans-serif;
+            font-size: 0.85rem;
+            line-height: 2.2;
+        }
+
+        /* زينة الأركان للبطاقة */
+        .card-deco {
+            position: absolute;
+            pointer-events: none;
+            font-size: 1.3rem;
+            opacity: 0.28;
+            animation: doodlefloat 5s ease-in-out infinite;
+        }
+        .card-deco-tl { top: 14px; right: 18px; animation-delay: 0.5s; }
+        .card-deco-tr { top: 14px; left: 18px; animation-delay: 1s; }
+        .card-deco-bl { bottom: 14px; right: 18px; animation-delay: 1.5s; }
+        .card-deco-br { bottom: 14px; left: 18px; animation-delay: 0s; }
+
+        /* ===== بوبأب الرسائل ===== */
+        .popup-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(255,77,148,0.18);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeOverlay 0.3s ease;
+        }
+        @keyframes fadeOverlay { from{opacity:0} to{opacity:1} }
+
+        .popup-card {
+            background: white;
+            border-radius: 36px;
+            padding: 30px 26px;
+            max-width: 320px;
+            width: 100%;
+            text-align: center;
+            box-shadow:
+                0 22px 60px rgba(255,77,148,0.32),
+                inset 0 0 0 3px rgba(255,179,209,0.55);
+            animation: popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+            position: relative;
+        }
+        .popup-hk {
+            width: 60px; height: 60px;
+            margin: 0 auto 10px;
+            animation: iconpop 0.5s 0.1s cubic-bezier(0.175,0.885,0.32,1.275) both;
+        }
+        @keyframes iconpop { from{transform:scale(0) rotate(-20deg)} to{transform:scale(1) rotate(0deg)} }
+        .popup-title {
+            font-family: 'Lemonada', sans-serif;
+            color: var(--p5);
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 1px 2px 0 rgba(255,179,209,0.7);
+        }
+        .popup-text {
+            font-family: 'Baloo Bhaijaan 2', sans-serif;
+            color: #888;
+            font-size: 0.95rem;
+            line-height: 2;
+            font-weight: 500;
+        }
+        .popup-close {
+            margin-top: 18px;
+            background: linear-gradient(135deg, #ff85b3, #ff4d94);
+            color: white;
+            border: none;
+            padding: 11px 28px;
+            border-radius: 50px;
+            font-family: 'Lemonada', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #c9006b;
+            transition: all 0.15s;
+        }
+        .popup-close:active { transform: translateY(4px); box-shadow: none; }
+
+        /* ===== فراشات وانفجار فتح الصفحة ===== */
+        .butterfly {
+            position: fixed;
+            pointer-events: none;
+            z-index: 500;
+            animation: butterflyFly linear forwards;
+            will-change: transform, opacity;
+        }
+        @keyframes butterflyFly {
+            0% { opacity: 1; transform: translate(0,0) scale(0.4) rotate(0deg); }
+            20% { opacity: 1; transform: translate(var(--dx1),var(--dy1)) scale(1.3) rotate(var(--r1)); }
+            60% { opacity: 0.85; transform: translate(var(--dx2),var(--dy2)) scale(1) rotate(var(--r2)); }
+            100% { opacity: 0; transform: translate(var(--dx3),var(--dy3)) scale(0.2) rotate(var(--r3)); }
+        }
+
+        .confetti-piece {
+            position: fixed;
+            pointer-events: none;
+            z-index: 499;
+            animation: confettiFall linear forwards;
+        }
+        @keyframes confettiFall {
+            0% { transform: translateY(-20px) rotate(0deg) scale(1); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg) scale(0.5); opacity: 0; }
+        }
+
+        /* إيموجي يتطاير عند ضغط الأزرار */
+        .btn-emoji {
+            position: fixed;
+            pointer-events: none;
+            z-index: 600;
+            font-size: 1.4rem;
+            animation: emojiFloat ease-out forwards;
+        }
+        @keyframes emojiFloat {
+            0% { transform: translate(0,0) scale(0.5) rotate(0deg); opacity: 1; }
+            60% { opacity: 1; }
+            100% { transform: translate(var(--ex), var(--ey)) scale(1.2) rotate(var(--er)); opacity: 0; }
+        }
+
+        /* ===== تحسينات الجوال العامة ===== */
+        button, .key, .action-btn {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        /* ===== شاشات صغيرة (جوال عادي تحت 430px) ===== */
+        @media (max-width: 430px) {
+            body {
+                align-items: flex-start;
+                overflow-y: auto;
+                padding: 0;
+            }
+
+            #login-page {
+                padding: 12px 10px;
+                gap: 12px;
+                min-height: 100dvh;
+                justify-content: center;
+            }
+
+            .lock-card {
+                padding: 22px 16px 16px;
+                border-radius: 28px;
+            }
+
+            .lock-title {
+                font-size: 1.05rem;
+                margin-top: 16px;
+                line-height: 1.7;
+            }
+
+            .lock-subtitle {
+                font-size: 0.76rem;
+            }
+
+            .date-display {
+                padding: 8px 10px;
+                gap: 4px;
+            }
+
+            .date-value {
+                font-size: 1.2rem;
+                min-width: 38px;
+                padding: 3px 6px;
+                letter-spacing: 3px;
+            }
+
+            .date-sep { font-size: 1.1rem; margin-top: 12px; }
+            .date-label { font-size: 0.55rem; }
+
+            /* لوحة المفاتيح متجاوبة */
+            .keypad {
+                padding: 12px;
+                gap: 9px;
+                border-radius: 24px;
+                width: 100%;
+            }
+
+            .key {
+                width: min(62px, 27vw);
+                height: min(62px, 27vw);
+                font-size: clamp(1rem, 5vw, 1.4rem);
+                box-shadow: 0 4px 0 #e05090, 0 5px 10px rgba(255,77,148,0.25);
+            }
+
+            /* ===== صفحة المحتوى ===== */
+            #main-content {
+                padding: 10px 8px;
+                max-height: none;
+                overflow-y: visible;
+            }
+
+            .main-card {
+                padding: 20px 14px 22px;
+                border-radius: 32px;
+            }
+
+            .main-title { font-size: 1.25rem; }
+            .main-subtitle { font-size: 0.78rem; margin-bottom: 12px; }
+
+            /* إطار الفيديو */
+            .video-outer {
+                padding: 8px;
+                margin-bottom: 14px;
+            }
+
+            .hk-corner {
+                width: 36px;
+                height: 36px;
+            }
+            .hk-face { width: 36px; height: 36px; }
+
+            .video-frame {
+                border-width: 3px;
+                border-radius: 16px;
+            }
+
+            .video-frame video {
+                max-height: 210px;
+            }
+
+            /* iframe اليوتيوب */
+            .video-frame iframe {
+                height: 210px !important;
+            }
+
+            /* الأزرار */
+            .action-buttons { gap: 10px; }
+
+            .btn-inner {
+                padding: 12px 14px;
+                font-size: 0.88rem;
+                gap: 8px;
+            }
+
+            .hk-mini { width: 22px; height: 22px; }
+
+            /* زينة الأركان أصغر */
+            .card-deco { font-size: 1rem; }
+            .card-deco-tl, .card-deco-tr { top: 10px; }
+            .card-deco-bl, .card-deco-br { bottom: 10px; }
+            .card-deco-tl, .card-deco-bl { right: 12px; }
+            .card-deco-tr, .card-deco-br { left: 12px; }
+
+            /* البوبأب */
+            .popup-card {
+                padding: 24px 18px;
+                border-radius: 28px;
+            }
+            .popup-title { font-size: 1rem; }
+            .popup-text { font-size: 0.88rem; }
+            .popup-hk { width: 50px; height: 50px; }
+        }
+
+        /* ===== شاشات صغيرة جداً (أقل من 360px) ===== */
+        @media (max-width: 360px) {
+            .lock-title { font-size: 0.95rem; }
+
+            .key {
+                width: min(56px, 26vw);
+                height: min(56px, 26vw);
+                font-size: clamp(0.9rem, 4.5vw, 1.2rem);
+            }
+
+            .keypad { gap: 7px; padding: 10px; }
+
+            .date-value {
+                font-size: 1.05rem;
+                min-width: 34px;
+                letter-spacing: 2px;
+            }
+
+            .btn-inner { font-size: 0.82rem; padding: 11px 12px; }
+            .main-title { font-size: 1.1rem; }
+        }
+
+        /* ===== شاشات كبيرة (تابلت وكمبيوتر) ===== */
+        @media (min-width: 600px) {
+            body { align-items: center; overflow: hidden; }
+            #main-content { max-height: 100vh; overflow-y: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- شخابيط الخلفية -->
+<div class="doodles-bg">
+    <div class="doodle" style="top:4%;left:4%;animation-delay:0s;font-size:2.4rem">🌸</div>
+    <div class="doodle" style="top:12%;right:6%;animation-delay:1.1s;font-size:1.9rem">✨</div>
+    <div class="doodle" style="top:22%;left:2%;animation-delay:2.2s;font-size:2rem">💕</div>
+    <div class="doodle" style="top:38%;right:3%;animation-delay:0.6s;font-size:2.1rem">🎀</div>
+    <div class="doodle" style="top:52%;left:5%;animation-delay:1.7s;font-size:1.6rem">⭐</div>
+    <div class="doodle" style="top:66%;right:4%;animation-delay:2.7s;font-size:2.3rem">🌸</div>
+    <div class="doodle" style="top:78%;left:3%;animation-delay:0.9s;font-size:1.7rem">💗</div>
+    <div class="doodle" style="top:88%;right:6%;animation-delay:3.1s;font-size:1.9rem">✨</div>
+    <div class="doodle" style="top:7%;left:44%;animation-delay:1.3s;font-size:1.5rem">🍓</div>
+    <div class="doodle" style="top:94%;left:38%;animation-delay:0.4s;font-size:1.7rem">🌷</div>
+    <div class="doodle" style="top:30%;left:48%;animation-delay:3.5s;font-size:1.4rem">🌙</div>
+    <div class="doodle" style="top:72%;left:46%;animation-delay:2s;font-size:1.5rem">🦋</div>
+    <svg style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.07" viewBox="0 0 400 900" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15,55 Q55,18 95,55 Q135,95 175,55" stroke="#ff4d94" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <path d="M295,95 Q335,55 375,95 Q335,135 295,95Z" stroke="#ff4d94" stroke-width="2.5" fill="none"/>
+        <circle cx="45" cy="195" r="14" stroke="#ff85b3" stroke-width="2.5" fill="none"/>
+        <path d="M335,295 L355,275 L375,295 L355,315Z" stroke="#ffb3d1" stroke-width="2.5" fill="none"/>
+        <path d="M8,395 Q48,358 88,395 Q48,432 8,395Z" stroke="#ff4d94" stroke-width="2.5" fill="none"/>
+        <path d="M195,495 Q235,458 275,495 L235,535Z" stroke="#ff85b3" stroke-width="2.5" fill="none"/>
+        <circle cx="345" cy="545" r="18" stroke="#ffb3d1" stroke-width="2.5" fill="none"/>
+        <path d="M15,645 Q55,615 95,645" stroke="#ff4d94" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <path d="M45,695 L75,672 L105,695 L75,718Z" stroke="#ff85b3" stroke-width="2.5" fill="none"/>
+        <path d="M200,745 Q240,718 280,745 Q240,772 200,745Z" stroke="#ffb3d1" stroke-width="2.5" fill="none"/>
+        <circle cx="355" cy="800" r="22" stroke="#ff4d94" stroke-width="2" fill="none"/>
+        <path d="M30,840 Q70,808 110,840" stroke="#ff85b3" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </svg>
+</div>
+
+<!-- موسيقى تبدأ أول ما يدخل -->
+<audio id="bg-music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ===== صفحة القفل ===== -->
+<div id="login-page">
+    <div class="lock-card">
+        <div class="bow-top">🎀</div>
+        <div class="card-deco card-deco-tl">🌸</div>
+        <div class="card-deco card-deco-tr">💕</div>
+        <div class="card-deco card-deco-bl">⭐</div>
+        <div class="card-deco card-deco-br">✨</div>
+
+        <h2 class="lock-title">اكتبي تاريخ تعارفنا 🌸<br>حتى تنفتح الهديةةة 💝</h2>
+        <p class="lock-subtitle" id="stage-hint">ابدأي بإدخال اليوم ✨</p>
+
+        <div class="date-display">
+            <div class="date-segment">
+                <span class="date-label">اليوم</span>
+                <div class="date-value active" id="disp-day">--</div>
+            </div>
+            <span class="date-sep">/</span>
+            <div class="date-segment">
+                <span class="date-label">الشهر</span>
+                <div class="date-value" id="disp-month">--</div>
+            </div>
+            <span class="date-sep">/</span>
+            <div class="date-segment">
+                <span class="date-label">السنة</span>
+                <div class="date-value" id="disp-year">----</div>
+            </div>
+        </div>
+
+        <div class="progress-dots" id="progress-dots"></div>
+        <div class="error-msg" id="error-msg">الرمز خطأ! حاولي مرة ثانية يا حلوة 💗</div>
+    </div>
+
+    <div class="keypad">
+        <button class="key" onclick="press(1)">1</button>
+        <button class="key" onclick="press(2)">2</button>
+        <button class="key" onclick="press(3)">3</button>
+        <button class="key" onclick="press(4)">4</button>
+        <button class="key" onclick="press(5)">5</button>
+        <button class="key" onclick="press(6)">6</button>
+        <button class="key" onclick="press(7)">7</button>
+        <button class="key" onclick="press(8)">8</button>
+        <button class="key" onclick="press(9)">9</button>
+        <button class="key key-back" onclick="backspace()">⌫</button>
+        <button class="key" onclick="press(0)">0</button>
+        <button class="key key-enter" onclick="nextStage()">✓</button>
+    </div>
+</div>
+
+<!-- ===== صفحة المحتوى ===== -->
+<div id="main-content">
+    <div class="main-card">
+        <div class="card-deco card-deco-tl">🎀</div>
+        <div class="card-deco card-deco-tr">💕</div>
+        <div class="card-deco card-deco-bl">🌷</div>
+        <div class="card-deco card-deco-br">⭐</div>
+
+        <h2 class="main-title">كل عام وأنتِ بخير 🎉</h2>
+        <p class="main-subtitle">يا أغلى شخص في حياتي 💝</p>
+
+        <!-- إطار الفيديو مع هيلو كيتي بالزوايا -->
+        <div class="video-outer">
+            <!-- هيلو كيتي في كل زاوية -->
+            <div class="hk-corner tl">
+                <svg class="hk-face" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                    <!-- جسم هيلو كيتي -->
+                    <ellipse cx="40" cy="44" rx="28" ry="24" fill="white" stroke="#ffb3d1" stroke-width="2"/>
+                    <!-- رأس -->
+                    <circle cx="40" cy="26" r="22" fill="white" stroke="#ffb3d1" stroke-width="2"/>
+                    <!-- أذنان -->
+                    <ellipse cx="22" cy="10" rx="9" ry="10" fill="white" stroke="#ffb3d1" stroke-width="2"/>
+                    <ellipse cx="58" cy="10" rx="9" ry="10" fill="white" stroke="#ffb3d1" stroke-width="2"/>
+                    <!-- ريبة -->
+                    <ellipse cx="56" cy="15" rx="8" ry="5" fill="#ff4d94" opacity="0.9"/>
+                    <ellipse cx="68" cy="15" rx="8" ry="5" fill="#ff4d94" opacity="0.9"/>
+                    <circle cx="62" cy="15" r="4" fill="#ff4d94"/>
+                    <!-- عيون -->
+                    <ellipse cx="33" cy="26" rx="3" ry="3.5" fill="#333"/>
+                    <ellipse cx="47" cy="26" rx="3" ry="3.5" fill="#333"/>
+                    <!-- أنف -->
+                    <ellipse cx="40" cy="31" rx="2.5" ry="2" fill="#ff85b3"/>
+                    <!-- شارب يسار -->
+                    <line x1="16" y1="28" x2="31" y2="30" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="16" y1="33" x2="31" y2="32" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+                    <!-- شارب يمين -->
+                    <line x1="49" y1="30" x2="64" y2="28" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="49" y1="32" x2="64" y2="33" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="hk-corner tr">
+                <svg class="hk-face" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="40" cy="44" rx="28" ry="24" fill="white" stroke="#ffb3d1" stroke-width="2"/>
+                    <circle cx="40" cy="26" r="22" fill="white" stroke="#ffb3d1" stroke-width="2"/>
+                    <ellipse cx="22" cy="10" rx="9" ry="10" fill="white" stroke="#ffb3d1" stroke-width="2"/>
+                    <ellipse cx="58" cy="10" rx="9" ry="10" fill="white" stroke="#ffb3d1" stroke-width="2"/>
+                    <ellipse cx="56" cy="15" rx="8" ry="5" fill="#ff4d94" opacity="0.9"/>
+                    <ellipse cx="68" cy="15" rx="8" ry="5" fill="#ff4d94" opacity="0.9"/>
+                    <circle cx="62" cy="15" r="4" fill="#ff4d94"/>
+                    <ellipse cx="33" cy="26" rx="3" ry="3.5" fill="#333"/>
+                    <ellipse cx="47" cy="26" rx="3" ry="3.5" fill="#333"/>
+                    <ellipse cx="40" cy="31" rx="2.5" ry="2" fill="#ff85b3"/>
+                    <line x1="16" y1="28" x2="31" y2="30" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="16" y1="33" x2="31" y2="32" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="49" y1="30" x2="64" y2="28" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="49" y1="32" x2="64" y2="33" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="hk-corner bl">
+                <svg class="hk-face" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="40" cy="44" rx="28" ry="24" fill="white" stroke="#ffb3d1" stroke-width="2"/>
+                    <circle cx="40" cy="26" r="22" fill="white" stroke="#ffb3d1" stroke-width="2"/>
+                    <ellipse cx="22" cy="10" rx="9" ry="10" fill="white" stroke="#ffb3d1" stroke-width="2"/>
+                    <ellipse cx="58" cy="10" rx="9" ry="10" fill="white" stroke="#ffb3d1" stroke-width="2"/>
+                    <ellipse cx="56" cy="15" rx="8" ry="5" fill="#ff4d94" opacity="0.9"/>
+                    <ellipse cx="68" cy="15" rx="8" ry="5" fill="#ff4d94" opacity="0.9"/>
+                    <circle cx="62" cy="15" r="4" fill="#ff4d94"/>
+                    <ellipse cx="33" cy="26" rx="3" ry="3.5" fill="#333"/>
+                    <ellipse cx="47" cy="26" rx="3" ry="3.5" fill="#333"/>
+                    <ellipse cx="40" cy="31" rx="2.5" ry="2" fill="#ff85b3"/>
+                    <line x1="16" y1="28" x2="31" y2="30" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="16" y1="33" x2="31" y2="32" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="49" y1="30" x2="64" y2="28" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="49" y1="32" x2="64" y2="33" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="hk-corner br">
+                <svg class="hk-face" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="40" cy="44" rx="28" ry="24" fill="white" stroke="#ffb3d1" stroke-width="2"/>
+                    <circle cx="40" cy="26" r="22" fill="white" stroke="#ffb3d1" stroke-width="2"/>
+                    <ellipse cx="22" cy="10" rx="9" ry="10" fill="white" stroke="#ffb3d1" stroke-width="2"/>
+                    <ellipse cx="58" cy="10" rx="9" ry="10" fill="white" stroke="#ffb3d1" stroke-width="2"/>
+                    <ellipse cx="56" cy="15" rx="8" ry="5" fill="#ff4d94" opacity="0.9"/>
+                    <ellipse cx="68" cy="15" rx="8" ry="5" fill="#ff4d94" opacity="0.9"/>
+                    <circle cx="62" cy="15" r="4" fill="#ff4d94"/>
+                    <ellipse cx="33" cy="26" rx="3" ry="3.5" fill="#333"/>
+                    <ellipse cx="47" cy="26" rx="3" ry="3.5" fill="#333"/>
+                    <ellipse cx="40" cy="31" rx="2.5" ry="2" fill="#ff85b3"/>
+                    <line x1="16" y1="28" x2="31" y2="30" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="16" y1="33" x2="31" y2="32" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="49" y1="30" x2="64" y2="28" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="49" y1="32" x2="64" y2="33" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <div class="video-frame" id="video-frame-container">
+                <!-- يتم ملؤه بالجافاسكريبت تلقائياً بناءً على VIDEO_URL -->
+            </div>
+        </div>
+
+        <!-- أزرار هيلو كيتي -->
+        <div class="action-buttons">
+
+            <button class="action-btn btn-love" onclick="showPopup('love'); burstEmojis(event, ['💌','💕','💗','💝','🌸'])">
+                <div class="btn-inner">
+                    <!-- هيلو كيتي صغير -->
+                    <svg class="hk-mini" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="40" cy="34" r="26" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+                        <ellipse cx="26" cy="14" rx="10" ry="11" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+                        <ellipse cx="54" cy="14" rx="10" ry="11" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+                        <ellipse cx="62" cy="20" rx="9" ry="5" fill="rgba(255,255,255,0.5)"/>
+                        <ellipse cx="72" cy="20" rx="9" ry="5" fill="rgba(255,255,255,0.5)"/>
+                        <ellipse cx="32" cy="33" rx="3.5" ry="4" fill="rgba(255,255,255,0.9)"/>
+                        <ellipse cx="48" cy="33" rx="3.5" ry="4" fill="rgba(255,255,255,0.9)"/>
+                        <ellipse cx="40" cy="39" rx="3" ry="2.5" fill="rgba(255,255,255,0.7)"/>
+                    </svg>
+                    رسالة الحب 💌
+                </div>
+            </button>
+
+            <button class="action-btn btn-memory" onclick="showPopup('memory'); burstEmojis(event, ['📸','🌸','✨','💕','🎀'])">
+                <div class="btn-inner">
+                    <svg class="hk-mini" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="40" cy="34" r="26" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+                        <ellipse cx="26" cy="14" rx="10" ry="11" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+                        <ellipse cx="54" cy="14" rx="10" ry="11" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+                        <ellipse cx="62" cy="20" rx="9" ry="5" fill="rgba(255,255,255,0.5)"/>
+                        <ellipse cx="72" cy="20" rx="9" ry="5" fill="rgba(255,255,255,0.5)"/>
+                        <ellipse cx="32" cy="33" rx="3.5" ry="4" fill="rgba(255,255,255,0.9)"/>
+                        <ellipse cx="48" cy="33" rx="3.5" ry="4" fill="rgba(255,255,255,0.9)"/>
+                        <ellipse cx="40" cy="39" rx="3" ry="2.5" fill="rgba(255,255,255,0.7)"/>
+                    </svg>
+                    ذكرياتنا 📸
+                </div>
+            </button>
+
+            <button class="action-btn btn-photo" onclick="togglePhoto(); burstEmojis(event, ['🎁','🌷','⭐','💗','🍓'])">
+                <div class="btn-inner">
+                    <svg class="hk-mini" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="40" cy="34" r="26" fill="rgba(212,0,106,0.18)" stroke="rgba(212,0,106,0.35)" stroke-width="2"/>
+                        <ellipse cx="26" cy="14" rx="10" ry="11" fill="rgba(212,0,106,0.18)" stroke="rgba(212,0,106,0.35)" stroke-width="2"/>
+                        <ellipse cx="54" cy="14" rx="10" ry="11" fill="rgba(212,0,106,0.18)" stroke="rgba(212,0,106,0.35)" stroke-width="2"/>
+                        <ellipse cx="62" cy="20" rx="9" ry="5" fill="rgba(212,0,106,0.35)"/>
+                        <ellipse cx="72" cy="20" rx="9" ry="5" fill="rgba(212,0,106,0.35)"/>
+                        <ellipse cx="32" cy="33" rx="3.5" ry="4" fill="#d4006a"/>
+                        <ellipse cx="48" cy="33" rx="3.5" ry="4" fill="#d4006a"/>
+                        <ellipse cx="40" cy="39" rx="3" ry="2.5" fill="#ff85b3"/>
+                    </svg>
+                    صورتنا الحلوة 🎁
+                </div>
+            </button>
+        </div>
+
+        <div id="photo-area">
+            <img src="photo.jpg" id="surprise-img" alt="صورتنا"
+                 onerror="this.style.display='none';document.getElementById('photo-fallback').style.display='block'">
+            <div class="photo-placeholder" id="photo-fallback" style="display:none">
+                📷 ضعي ملف <strong>photo.jpg</strong><br>
+                في نفس مجلد ملف الـ HTML
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- بوبأب -->
+<div class="popup-overlay" id="popup-overlay" style="display:none" onclick="closePopup(event)">
+    <div class="popup-card">
+        <!-- هيلو كيتي كبير في البوبأب -->
+        <svg class="popup-hk" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="40" cy="52" rx="28" ry="22" fill="white" stroke="#ffb3d1" stroke-width="2"/>
+            <circle cx="40" cy="30" r="24" fill="white" stroke="#ffb3d1" stroke-width="2"/>
+            <ellipse cx="22" cy="11" rx="10" ry="11" fill="white" stroke="#ffb3d1" stroke-width="2"/>
+            <ellipse cx="58" cy="11" rx="10" ry="11" fill="white" stroke="#ffb3d1" stroke-width="2"/>
+            <ellipse cx="57" cy="17" rx="9" ry="5" fill="#ff4d94"/>
+            <ellipse cx="69" cy="17" rx="9" ry="5" fill="#ff4d94"/>
+            <circle cx="63" cy="17" r="5" fill="#ff4d94"/>
+            <ellipse cx="33" cy="29" rx="3.5" ry="4" fill="#222"/>
+            <ellipse cx="47" cy="29" rx="3.5" ry="4" fill="#222"/>
+            <ellipse cx="40" cy="35" rx="3" ry="2.5" fill="#ff85b3"/>
+            <line x1="14" y1="30" x2="30" y2="33" stroke="#bbb" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="14" y1="36" x2="30" y2="35" stroke="#bbb" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="50" y1="33" x2="66" y2="30" stroke="#bbb" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="50" y1="35" x2="66" y2="36" stroke="#bbb" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <div class="popup-title" id="popup-title"></div>
+        <div class="popup-text" id="popup-text"></div>
+        <button class="popup-close" onclick="closePopupDirect()">أغلقي ×</button>
+    </div>
+</div>
+
+<script>
+    // ============================================================
+    //  ⚙️ الإعدادات — غيّري هنا فقط
+    // ============================================================
+    const CORRECT_DAY   = "01";   // اليوم
+    const CORRECT_MONTH = "01";   // الشهر
+    const CORRECT_YEAR  = "2024"; // السنة
+
+    // الفيديو: اكتبي رابط يوتيوب مثل: "https://www.youtube.com/watch?v=XXXXXXX"
+    // أو اتركيه "video.mp4" إذا رفعتِ الملف مباشرة
+    const VIDEO_URL = "video.mp4";
+
+    const LOVE_MESSAGE  = "إنتِ أغلى شي بحياتي وأحب وجودك بجنبي كل يوم، الله يديمنا لبعض ويزيدنا حب 💕";
+    const MEMORY_TEXT   = "تتذكرين أول يوم التقينا؟ كان أحلى يوم بحياتي، وكل يوم معاكِ بيكون أحلى من اللي قبله 🌸";
+    // ============================================================
+
+    // ===== تشغيل الموسيقى أول ما يتفاعل المستخدم =====
+    let musicStarted = false;
+    function tryPlayMusic() {
+        if (!musicStarted) {
+            document.getElementById('bg-music').play().then(() => {
+                musicStarted = true;
+            }).catch(() => {});
+        }
+    }
+    document.addEventListener('click', tryPlayMusic, { once: false });
+    document.addEventListener('touchstart', tryPlayMusic, { once: false });
+    // محاولة تلقائية
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.getElementById('bg-music').play().then(() => {
+                musicStarted = true;
+            }).catch(() => {});
+        }, 500);
+    });
+
+    // ===== منطق إدخال التاريخ =====
+    const stages = [
+        { id: 'disp-day',   max: 2, label: 'ابدأي بإدخال اليوم ✨' },
+        { id: 'disp-month', max: 2, label: 'الآن أدخلي الشهر 🌸' },
+        { id: 'disp-year',  max: 4, label: 'وأخيراً السنة 💕' },
+    ];
+    let currentStage = 0;
+    let inputs = ['', '', ''];
+
+    const dotsContainer = document.getElementById('progress-dots');
+    function buildDots() {
+        dotsContainer.innerHTML = '';
+        stages.forEach((_, i) => {
+            const el = document.createElement('div');
+            el.className = 'progress-dot' + (i <= currentStage ? ' filled' : '');
+            dotsContainer.appendChild(el);
+        });
+    }
+    buildDots();
+
+    function updateDisplay() {
+        const phs = ['--', '--', '----'];
+        const maxes = [2, 2, 4];
+        ['disp-day','disp-month','disp-year'].forEach((id, i) => {
+            const el = document.getElementById(id);
+            const val = inputs[i];
+            el.textContent = val.length === 0 ? phs[i] : val.padEnd(maxes[i], '_');
+            el.classList.toggle('active', i === currentStage);
+        });
+        document.getElementById('stage-hint').textContent = stages[currentStage]?.label || '';
+    }
+
+    function press(num) {
+        if (currentStage >= stages.length) return;
+        const max = stages[currentStage].max;
+        if (inputs[currentStage].length < max) {
+            inputs[currentStage] += num;
+            updateDisplay();
+            if (inputs[currentStage].length === max && currentStage < stages.length - 1) {
+                setTimeout(nextStage, 280);
+            }
+        }
+    }
+
+    function backspace() {
+        if (inputs[currentStage].length > 0) {
+            inputs[currentStage] = inputs[currentStage].slice(0, -1);
+            updateDisplay();
+        } else if (currentStage > 0) {
+            currentStage--;
+            buildDots();
+            updateDisplay();
+        }
+    }
+
+    function nextStage() {
+        const val = inputs[currentStage];
+        if (val.length < stages[currentStage].max) {
+            showError('أكملي الإدخال أولاً 💕');
+            return;
+        }
+        if (currentStage < stages.length - 1) {
+            currentStage++;
+            buildDots();
+            updateDisplay();
+        } else {
+            checkPassword();
+        }
+    }
+
+    function checkPassword() {
+        if (inputs[0] === CORRECT_DAY && inputs[1] === CORRECT_MONTH && inputs[2] === CORRECT_YEAR) {
+            unlockPage();
+        } else {
+            showError('الرمز خطأ! حاولي مرة ثانية يا حلوة 💗');
+            setTimeout(() => { inputs = ['','','']; currentStage = 0; buildDots(); updateDisplay(); }, 1300);
+        }
+    }
+
+    function showError(msg) {
+        const el = document.getElementById('error-msg');
+        el.textContent = msg;
+        el.classList.add('show');
+        setTimeout(() => el.classList.remove('show'), 2600);
+    }
+
+    function unlockPage() {
+        tryPlayMusic();
+        const lp = document.getElementById('login-page');
+        lp.style.transition = 'all 0.45s ease';
+        lp.style.opacity = '0';
+        lp.style.transform = 'scale(0.88)';
+        setTimeout(() => {
+            lp.style.display = 'none';
+            const mc = document.getElementById('main-content');
+            mc.style.display = 'block';
+            checkVideo();
+            explodeButterflies();
+        }, 420);
+    }
+
+    function checkVideo() {
+        const container = document.getElementById('video-frame-container');
+
+        // تحقق إذا الرابط YouTube
+        const ytMatch = VIDEO_URL.match(
+            /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+        );
+
+        if (ytMatch) {
+            // رابط يوتيوب — ضع iframe
+            const videoId = ytMatch[1];
+            container.innerHTML = `
+                <iframe
+                    width="100%" height="280"
+                    src="https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    style="display:block; border-radius:18px;">
+                </iframe>`;
+        } else if (VIDEO_URL && VIDEO_URL !== "") {
+            // ملف محلي
+            container.innerHTML = `
+                <video id="main-video" controls playsinline style="width:100%;max-height:290px;display:block;border-radius:18px;">
+                    <source src="${VIDEO_URL}" type="video/mp4">
+                </video>`;
+            const vid = document.getElementById('main-video');
+            vid.addEventListener('error', () => {
+                container.innerHTML = `
+                    <div class="video-placeholder">
+                        <span class="vid-icon">🎬</span>
+                        تأكدي أن ملف <strong>video.mp4</strong> موجود بنفس المجلد<br>
+                        أو ضعي رابط يوتيوب في VIDEO_URL
+                    </div>`;
+            }, { once: true });
+        } else {
+            container.innerHTML = `
+                <div class="video-placeholder">
+                    <span class="vid-icon">🎬</span>
+                    ضعي رابط يوتيوب أو ملف <strong>video.mp4</strong> في الإعدادات
+                </div>`;
+        }
+    }
+
+    // ===== انفجار فراشات =====
+    function explodeButterflies() {
+        const emojis = ['🦋','🌸','💕','✨','💗','🌷','⭐','🎀','💝','🌺'];
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
+
+        for (let i = 0; i < 65; i++) {
+            setTimeout(() => {
+                const el = document.createElement('div');
+                el.className = 'butterfly';
+                el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                const angle = Math.random() * Math.PI * 2;
+                const d1 = 80 + Math.random()*130, d2 = 200+Math.random()*200, d3 = 320+Math.random()*260;
+                const dur = 1.6 + Math.random() * 2;
+                el.style.cssText = `
+                    left:${cx}px; top:${cy}px;
+                    font-size:${1.2 + Math.random()*1.5}rem;
+                    animation-duration:${dur}s;
+                    --dx1:${Math.cos(angle)*d1}px; --dy1:${Math.sin(angle)*d1}px;
+                    --dx2:${Math.cos(angle+0.4)*d2}px; --dy2:${(Math.sin(angle+0.4)*d2-90)}px;
+                    --dx3:${Math.cos(angle+0.8)*d3}px; --dy3:${(Math.sin(angle+0.8)*d3-210)}px;
+                    --r1:${Math.random()*90-45}deg; --r2:${Math.random()*180-90}deg; --r3:${Math.random()*360-180}deg;
+                `;
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), dur*1000+300);
+            }, i * 55);
+        }
+        // نثار مستمر
+        const confEmojis = ['🦋','🌸','💕','✨','💗','⭐'];
+        let n = 0;
+        const iv = setInterval(() => {
+            const el = document.createElement('div');
+            el.className = 'confetti-piece';
+            el.textContent = confEmojis[Math.floor(Math.random()*confEmojis.length)];
+            el.style.left = Math.random()*100+'vw';
+            el.style.top = '-30px';
+            el.style.fontSize = (0.8+Math.random()*1.1)+'rem';
+            const d = 3+Math.random()*4;
+            el.style.animationDuration = d+'s';
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), d*1000+300);
+            if (++n > 90) clearInterval(iv);
+        }, 180);
+    }
+
+    // ===== إيموجيات تتطاير عند ضغط الأزرار =====
+    function burstEmojis(e, emojiList) {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const cx = rect.left + rect.width/2;
+        const cy = rect.top + rect.height/2;
+
+        for (let i = 0; i < 10; i++) {
+            setTimeout(() => {
+                const el = document.createElement('div');
+                el.className = 'btn-emoji';
+                el.textContent = emojiList[Math.floor(Math.random()*emojiList.length)];
+                const angle = (Math.random() * Math.PI * 2);
+                const dist = 60 + Math.random()*80;
+                el.style.cssText = `
+                    left:${cx}px; top:${cy}px;
+                    font-size:${1.1+Math.random()*0.8}rem;
+                    animation-duration:${0.7+Math.random()*0.5}s;
+                    --ex:${Math.cos(angle)*dist}px;
+                    --ey:${Math.sin(angle)*dist-40}px;
+                    --er:${Math.random()*120-60}deg;
+                `;
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), 1200);
+            }, i * 50);
+        }
+    }
+
+    // ===== بوبأب =====
+    const popups = {
+        love:   { title: 'رسالة الحب 💕',    text: LOVE_MESSAGE  },
+        memory: { title: 'ذكرياتنا 🌸',       text: MEMORY_TEXT   },
+    };
+
+    function showPopup(type) {
+        const d = popups[type];
+        document.getElementById('popup-title').textContent = d.title;
+        document.getElementById('popup-text').textContent  = d.text;
+        document.getElementById('popup-overlay').style.display = 'flex';
+    }
+    function closePopup(e) {
+        if (e.target === document.getElementById('popup-overlay')) closePopupDirect();
+    }
+    function closePopupDirect() {
+        document.getElementById('popup-overlay').style.display = 'none';
+    }
+
+    let photoVisible = false;
+    function togglePhoto() {
+        photoVisible = !photoVisible;
+        document.getElementById('photo-area').style.display = photoVisible ? 'block' : 'none';
+    }
+
+    updateDisplay();
+</script>
+</body>
+</html>
