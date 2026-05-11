@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هدية لبيست فريند</title>
+    <style>
+        :root {
+            --pink-light: #ffe4e1;
+            --pink-main: #ffb6c1;
+            --pink-dark: #ff69b4;
+            --white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--pink-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* صفحة القفل */
+        #login-page {
+            text-align: center;
+            z-index: 10;
+        }
+
+        .title-text {
+            color: var(--pink-dark);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px white;
+        }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 25px;
+            border-radius: 30px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border: 2px solid white;
+        }
+
+        .key {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            background: var(--pink-main);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 0 var(--pink-dark);
+        }
+
+        .key:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+
+        #pass-display {
+            width: 100%;
+            height: 40px;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 2px solid var(--pink-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            color: var(--pink-dark);
+        }
+
+        /* الصفحة الثانية */
+        #main-content {
+            display: none; /* مخفية في البداية */
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            border-radius: 40px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.2);
+            border: 5px solid var(--pink-main);
+            position: relative;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .video-container {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 3px solid var(--pink-light);
+        }
+
+        .buttons-side {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .action-btn {
+            background: var(--pink-main);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .action-btn:hover {
+            background: var(--pink-dark);
+        }
+
+        /* الفراشات */
+        .butterfly {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('https://cdn-icons-png.flaticon.com/512/1045/1045511.png'); /* رابط أيقونة فراشة */
+            background-size: contain;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            z-index: 100;
+            animation: fly 5s infinite linear;
+        }
+
+        @keyframes fly {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+            100% { transform: translate(100px, -100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
+
+    <div id="login-page">
+        <h2 class="title-text">اكتبي تاريخ تعارفناا حتى تنفتح الهديةةة</h2>
+        <div id="pass-display">****</div>
+        <div class="keypad">
+            <button class="key" onclick="press(1)">1</button>
+            <button class="key" onclick="press(2)">2</button>
+            <button class="key" onclick="press(3)">3</button>
+            <button class="key" onclick="press(4)">4</button>
+            <button class="key" onclick="press(5)">5</button>
+            <button class="key" onclick="press(6)">6</button>
+            <button class="key" onclick="press(7)">7</button>
+            <button class="key" onclick="press(8)">8</button>
+            <button class="key" onclick="press(9)">9</button>
+            <button class="key" onclick="clearPass()" style="background: #ccc; box-shadow: 0 4px 0 #999;">C</button>
+            <button class="key" onclick="press(0)">0</button>
+            <button class="key" onclick="checkPass()" style="background: #4caf50; box-shadow: 0 4px 0 #388e3c;">✓</button>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <h2 style="color: var(--pink-dark);">كل عام وإنتِ بخير! ✨</h2>
+        
+        <div class="video-container">
+            <iframe width="100%" height="250" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+
+        <div class="buttons-side">
+            <button class="action-btn" onclick="alert('إنتِ أغلى شي بحياتي، الله يديمنا لبعض!')">رسالة الحب 💌</button>
+            <button class="action-btn" onclick="alert('تتذكرين أول يوم التقينا؟ كان أحلى يوم!')">ذكرتنا 📸</button>
+            <button class="action-btn" onclick="showSurprise()">اضغط هنا للصورة 🎁</button>
+        </div>
+        
+        <div id="photo-area" style="margin-top: 15px; display: none;">
+            <img src="https://via.placeholder.com/200" id="surprise-img" style="width: 100%; border-radius: 15px;">
+        </div>
+    </div>
+
+    <script>
+        // --- تعديل كلمة السر من هنا ---
+        const correctPassword = "2024"; // غير هذا الرقم للتاريخ اللي تريده
+        
+        let input = "";
+
+        function press(num) {
+            if (input.length < 4) {
+                input += num;
+                document.getElementById('pass-display').innerText = "*".repeat(input.length);
+            }
+        }
+
+        function clearPass() {
+            input = "";
+            document.getElementById('pass-display').innerText = "****";
+        }
+
+        function checkPass() {
+            if (input === correctPassword) {
+                // إخفاء صفحة الدخول وإظهار المحتوى
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                
+                // تشغيل الموسيقى
+                document.getElementById('bg-music').play();
+                
+                // بدء تأثير الفراشات
+                startButterflies();
+            } else {
+                alert("الرمز خطأ! حاولي مرة ثانية يا حلوة");
+                clearPass();
+            }
+        }
+
+        function showSurprise() {
+            const area = document.getElementById('photo-area');
+            area.style.display = area.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // كود الفراشات المتطايرة
+        function startButterflies() {
+            setInterval(() => {
+                const b = document.createElement('div');
+                b.className = 'butterfly';
+                b.style.left = Math.random() * 100 + "vw";
+                b.style.top = "100vh";
+                b.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                document.body.appendChild(b);
+                setTimeout(() => b.remove(), 5000);
+            }, 500);
+        }
+    </script>
+</body>
+</html>
